@@ -5,7 +5,8 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     '@nuxt/content',
     '@nuxt/image',
-    '@nuxt/test-utils'
+    '@nuxt/test-utils',
+    '@vueuse/nuxt'
   ],
 
   devtools: {
@@ -14,10 +15,15 @@ export default defineNuxtConfig({
 
   css: ['~/assets/css/main.css'],
 
+  router: {
+    options: {
+      scrollBehaviorType: 'smooth'
+    }
+  },
+
   routeRules: {
     '/': { prerender: true }
   },
-
   compatibilityDate: '2025-01-15',
 
   eslint: {
