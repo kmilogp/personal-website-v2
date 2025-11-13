@@ -51,29 +51,64 @@ const experiences = [
 <template>
   <div class="relative min-h-svh selection:bg-primary-900 selection:text-primary-50 ">
     <div
-      class="size-[400px] dark:bg-blue-700/30 bg-blue-300/30 blur-[120px] rounded-full fixed transform -translate-x-1/2 -translate-y-1/2 -z-1"
+      class="size-[400px] dark:bg-blue-800/30 bg-blue-300/30 blur-[150px] rounded-full fixed transform -translate-x-1/2 -translate-y-1/2 -z-1"
       :style="{ top: `${y - scrollY}px`, left: `${x - scrollX}px` }"
     />
-    <div class="flex flex-wrap gap-4 justify-between container max-w-7xl px-4 mx-auto py-24 relative">
-      <div class="space-y-4 max-w-[48%] h-svh sticky top-0 self-start">
-        <h1 class="text-5xl font-bold sticky top-0">
-          Camilo Glez
-        </h1>
-        <h2 class="font-medium text-xl">
-          Full Stack Developer
-        </h2>
-        <p class="mt-4 dark:text-neutral-400 text-neutral-900">
-          I build user-friendly applications <br> and developer tools.
-        </p>
-        <NuxtLink
-          to="#experience"
-          class="active:text-primary-500 hover:text-primary-600 transition-colors duration-200"
-        >
-          Experience
-        </NuxtLink>
+    <div class="flex flex-wrap gap-4 justify-between container max-w-7xl px-4 mx-auto relative">
+      <div class="max-w-[48%] h-svh sticky top-0 self-start inline-flex flex-col justify-between py-24">
+        <div class="space-y-4">
+          <h1 class="text-5xl font-bold">
+            Camilo Glez
+          </h1>
+          <h2 class="font-medium text-xl">
+            Full Stack Developer
+          </h2>
+          <p class="mt-4 dark:text-neutral-400 text-neutral-900">
+            I build user-friendly applications <br> and developer tools.
+          </p>
+        </div>
+
+        <div>
+          <NuxtLink
+            href="#about"
+            class="w-min flex gap-2 items-center group hover:text-primary-700 hover:dark:text-primary-500 hover:border-primary-700 hover:dark:border-primary-500 transition-colors duration-100"
+          >
+            <div class="border-t group-hover:w-20 w-10 transition-all duration-100" />
+            <span
+              class="transition-colors duration-100"
+            >
+              About
+            </span>
+          </NuxtLink>
+          <NuxtLink
+            href="#experience"
+            class="w-min flex gap-2 items-center group hover:text-primary-700 hover:dark:text-primary-500 hover:border-primary-700 hover:dark:border-primary-500 transition-colors duration-100"
+          >
+            <div class="border-t group-hover:w-20 w-10 transition-all duration-100" />
+            <span class="transition-colors duration-100">Experience</span>
+          </NuxtLink>
+        </div>
+
+        <div class="flex text-xl gap-4">
+          <NuxtLink
+            href="https://github.com/kmilogp8496"
+            target="_blank"
+          >
+            <UIcon name="lucide:github" />
+          </NuxtLink>
+          <NuxtLink
+            href="www.linkedin.com/in/camilo-gonzález-pérez-fullstack"
+            target="_blank"
+          >
+            <UIcon name="lucide:linkedin" />
+          </NuxtLink>
+        </div>
       </div>
-      <div class="leading-7 text-neutral-400 space-y-4 max-w-2xl">
-        <div class="px-4 space-y-4">
+      <div class="leading-7 text-neutral-400 space-y-4 max-w-2xl py-24">
+        <div
+          id="about"
+          class="px-4 space-y-4"
+        >
           <p>
             I'm a full stack developer with an inclination towards frontend development. I like crafting beautiful and functional user interfaces. Pixel-perfect designs are my passion and I really enjoy bringing them to life.
           </p>
