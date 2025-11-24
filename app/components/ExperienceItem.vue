@@ -17,7 +17,7 @@ defineProps<{
 <template>
   <NuxtLink
     :href="experience.link"
-    class="grid grid-cols-5 hover:opacity-100! gap-4 group dark:hover:bg-neutral-100/5 hover:bg-neutral-900/5 cursor-pointer border border-transparent dark:hover:border-neutral-700/50 hover:border-neutral-300/50 rounded p-4"
+    class="grid lg:grid-cols-5 hover:opacity-100! gap-4 group dark:hover:bg-neutral-100/5 hover:bg-neutral-900/5 cursor-pointer border border-transparent dark:hover:border-neutral-700/50 hover:border-neutral-300/50 rounded p-4"
   >
     <div class="col-span-1 text-xs pt-1 uppercase">
       {{ experience.period }}
@@ -56,11 +56,13 @@ defineProps<{
           </NuxtLink>
         </div>
         <div class="flex flex-wrap gap-2 mt-4">
-          <div
+          <UBadge
             v-for="technology in experience.technologies"
             :key="technology"
-            class="font-medium dark:text-primary-300 text-primary-700 dark:bg-primary-500/10 bg-primary-900/10 rounded-l-full rounded-r-full py-1.5 px-2.5 text-xs"
-            v-text="technology"
+            :label="technology"
+            variant="soft"
+            size="md"
+            class="font-medium rounded-full px-2"
           />
         </div>
       </div>

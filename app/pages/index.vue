@@ -51,42 +51,29 @@ const experiences = [
 <template>
   <div class="relative min-h-svh selection:bg-primary-900 selection:text-primary-50 ">
     <div
-      class="size-[400px] dark:bg-blue-800/30 bg-blue-300/30 blur-[150px] rounded-full fixed transform -translate-x-1/2 -translate-y-1/2 -z-1"
+      class="hidden md:block size-[400px] dark:bg-blue-800/30 bg-blue-300/30 blur-[150px] rounded-full fixed transform -translate-x-1/2 -translate-y-1/2 -z-1"
       :style="{ top: `${y - scrollY}px`, left: `${x - scrollX}px` }"
     />
-    <div class="flex flex-wrap gap-4 justify-between container max-w-7xl px-4 mx-auto relative">
-      <div class="max-w-[48%] h-svh sticky top-0 self-start inline-flex flex-col justify-between py-24">
+    <div class="md:flex gap-4 justify-between container max-w-7xl mx-auto relative">
+      <div class="w-full md:w-[48%] md:h-svh md:sticky top-0 self-start inline-flex flex-col justify-between py-10 md:py-24 space-y-4 px-4">
         <div class="space-y-4">
           <h1 class="text-5xl font-bold">
-            Camilo Glez
+            Camilo G. P.
           </h1>
           <h2 class="font-medium text-xl">
             Full Stack Developer
           </h2>
           <p class="mt-4 dark:text-neutral-400 text-neutral-900">
-            I build user-friendly applications <br> and developer tools.
+            I build user-friendly applications <br class="hidden md:block"> and robust backend solutions.
           </p>
         </div>
 
-        <div>
-          <NuxtLink
-            href="#about"
-            class="w-min flex gap-2 items-center group hover:text-primary-700 hover:dark:text-primary-500 hover:border-primary-700 hover:dark:border-primary-500 transition-colors duration-100"
-          >
-            <div class="border-t group-hover:w-20 w-10 transition-all duration-100" />
-            <span
-              class="transition-colors duration-100"
-            >
-              About
-            </span>
-          </NuxtLink>
-          <NuxtLink
-            href="#experience"
-            class="w-min flex gap-2 items-center group hover:text-primary-700 hover:dark:text-primary-500 hover:border-primary-700 hover:dark:border-primary-500 transition-colors duration-100"
-          >
-            <div class="border-t group-hover:w-20 w-10 transition-all duration-100" />
-            <span class="transition-colors duration-100">Experience</span>
-          </NuxtLink>
+        <div class="text-neutral-400 dark:text-neutral-500 md:pb-[30vh] space-y-4 hidden md:block">
+          <NavigationLink
+            v-for="target in ['about', 'experience', 'contact']"
+            :key="target"
+            :target="target"
+          />
         </div>
 
         <div class="flex text-xl gap-4">
@@ -104,54 +91,59 @@ const experiences = [
           </NuxtLink>
         </div>
       </div>
-      <div class="leading-7 text-neutral-400 space-y-4 max-w-2xl py-24">
-        <div
-          id="about"
-          class="px-4 space-y-4"
-        >
-          <p>
-            I'm a full stack developer with an inclination towards frontend development. I like crafting beautiful and functional user interfaces. Pixel-perfect designs are my passion and I really enjoy bringing them to life.
-          </p>
-          <p>
-            I like solving challenges and complex problems. I enjoy backend development too, and I'm always trying to create efficient and scalable solutions.
-          </p>
-          <p>
-            Infrastructure services are part of my daily work. I'm a fan of Docker and Linux systems, and lately I've been exploring the usage of Kubernetes for container orchestration.
-          </p>
-          <p>
-            Currently I'm a Senior Full Stack Developer at <ProseLink href="https://www.check24.es">
-              Check24
-            </ProseLink>. Check24 is changing the car insurance market in Spain, and my main responsibilities are building and improving the Customer Area facing services and the Backoffice functionalities that allow our agents to give the best-in-class service to our customers.
-          </p>
-          <p>
-            In the past, I've had the opportunity to work with amazing companies and teams, where the main focus was the delivery of <strong class="font-medium text-neutral-900 dark:text-neutral-100">high value </strong> software solutions that could help our <strong class="font-medium text-neutral-900 dark:text-neutral-100">customers </strong> in a significant way.
-          </p>
-        </div>
-        <div class="group/parent mt-28 space-y-4">
-          <ExperienceItem
-            v-for="experience in experiences"
-            :key="experience.title"
-            class="group-hover/parent:opacity-50 transition-opacity duration-200"
-            :experience="experience"
+
+      <div class="leading-7 text-neutral-400 md:max-w-md lg:max-w-2xl md:py-24 space-y-10 md:space-y-16 lg:space-y-28 relative">
+        <div>
+          <LandingHeader
+            id="about"
+            title="About me"
           />
+          <div
+            class="px-4 space-y-4 relative"
+          >
+            <p>
+              I'm a full stack developer with an inclination towards frontend development. I like crafting beautiful and functional user interfaces. Pixel-perfect designs are my passion and I really enjoy bringing them to life.
+            </p>
+            <p>
+              I like solving challenges and complex problems. I enjoy backend development too, and I'm always trying to create efficient and scalable solutions.
+            </p>
+            <p>
+              Infrastructure services are part of my daily work. I'm a fan of Docker and Linux systems, and lately I've been exploring the usage of Kubernetes for container orchestration.
+            </p>
+            <p>
+              Currently I'm a Senior Full Stack Developer at <ProseLink href="https://www.check24.es">
+                Check24
+              </ProseLink>. Check24 is changing the car insurance market in Spain, and my main responsibilities are building and improving the Customer Area facing services and the Backoffice functionalities that allow our agents to give the best-in-class service to our customers.
+            </p>
+            <p>
+              In the past, I've had the opportunity to work with amazing companies and teams, where the main focus was the delivery of <strong class="font-medium text-neutral-900 dark:text-neutral-100">high value </strong> software solutions that could help our <strong class="font-medium text-neutral-900 dark:text-neutral-100">customers </strong> in a significant way.
+            </p>
+          </div>
+        </div>
+        <div>
+          <LandingHeader
+            id="experience"
+            title="Experience"
+          />
+          <div
+            class="group/parent space-y-4 relative"
+          >
+            <ExperienceItem
+              v-for="experience in experiences"
+              :key="experience.title"
+              class="group-hover/parent:opacity-50 transition-opacity duration-200"
+              :experience="experience"
+            />
+          </div>
+        </div>
+        <div class="relative">
+          <LandingHeader
+            id="contact"
+            title="Get in touch"
+          />
+          <LandingContact class="px-4" />
         </div>
       </div>
     </div>
   </div>
 </template>
-
-<style scoped>
-.moving-gradient {
-  /* circular gradient that moves from left to right */
-background: radial-gradient(#e66465, #9198e5) !important;
-}
-
-@keyframes moveGradient {
-  0% {
-    background-position: 0% 0%;
-  }
-  100% {
-    background-position: 100% 100%;
-  }
-}
-</style>
