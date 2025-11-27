@@ -32,6 +32,8 @@ async function handleSubmit() {
   }
 
   form.value?.clear()
+
+  loading.value = true
 }
 </script>
 
