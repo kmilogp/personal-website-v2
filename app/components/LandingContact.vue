@@ -1,15 +1,8 @@
 <script setup lang="ts">
-import * as z from 'zod'
-
 const form = useTemplateRef('form')
 
-const schema = z.object({
-  name: z.string().optional(),
-  email: z.string().email('Please provide a valid email address'),
-  message: z.string().min(1, 'Please enter a message').max(1000, 'Try to keep it short and concise')
-})
-
 const toast = useToast()
+const loading = ref(false)
 
 const state = ref({
   name: '',
@@ -17,18 +10,28 @@ const state = ref({
   message: ''
 })
 
-function handleSubmit() {
+async function handleSubmit() {
+  loading.value = true
+  const response = await $fetch.raw('/api/contact', {
+    method: 'POST',
+    body: state.value
+  })
+
+  const isOk = response.ok
+
+  toast.add({
+    title: isOk ? 'Message sent' : 'Error sending message',
+    description: isOk ? 'Thank you for your message! I will get back to you as soon as possible.' : 'Something went wrong. Please try again later.',
+    color: isOk ? 'primary' : 'error'
+  })
+
   state.value = {
     name: '',
     email: '',
     message: ''
   }
+
   form.value?.clear()
-  toast.add({
-    title: 'Message sent',
-    description: 'Thank you for your message! I will get back to you as soon as possible.',
-    color: 'primary'
-  })
 }
 </script>
 
@@ -39,7 +42,7 @@ function handleSubmit() {
     <UForm
       ref="form"
       :state="state"
-      :schema="schema"
+      :schema="contactSchema"
       class="grid grid-cols-1 md:grid-cols-2 gap-4"
       @submit="handleSubmit"
     >
@@ -79,6 +82,7 @@ function handleSubmit() {
         <UButton
           type="submit"
           variant="soft"
+          :loading
         >
           Say Hi!
         </UButton>

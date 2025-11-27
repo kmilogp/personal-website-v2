@@ -93,9 +93,8 @@ const experiences = [
       </div>
 
       <div class="leading-7 text-neutral-400 md:max-w-md lg:max-w-2xl md:py-24 space-y-10 md:space-y-16 lg:space-y-28 relative">
-        <div>
+        <div id="about">
           <LandingHeader
-            id="about"
             title="About me"
           />
           <div
@@ -120,9 +119,8 @@ const experiences = [
             </p>
           </div>
         </div>
-        <div>
+        <div id="experience">
           <LandingHeader
-            id="experience"
             title="Experience"
           />
           <div
@@ -136,9 +134,11 @@ const experiences = [
             />
           </div>
         </div>
-        <div class="relative">
+        <div
+          id="contact"
+          class="relative"
+        >
           <LandingHeader
-            id="contact"
             title="Get in touch"
           />
           <LandingContact class="px-4" />
