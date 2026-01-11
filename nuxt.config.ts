@@ -6,8 +6,7 @@ export default defineNuxtConfig({
     '@nuxt/content',
     '@nuxt/image',
     '@nuxt/test-utils',
-    '@vueuse/nuxt',
-    '@nuxthub/core'
+    '@vueuse/nuxt'
   ],
 
   devtools: {
@@ -26,10 +25,6 @@ export default defineNuxtConfig({
     '/': { prerender: true }
   },
   compatibilityDate: '2025-01-15',
-
-  hub: {
-    database: true
-  },
 
   eslint: {
     config: {

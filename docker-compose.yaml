@@ -1,0 +1,31 @@
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: personal-website
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql
+      
+  app:
+    image: oven/bun:1
+    ports:
+      - 3000:3000
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: postgres
+      DATABASE_NAME: personal-website
+      DATABASE_HOST: db
+      DATABASE_PORT: 5432
+    entrypoint: ["bun", "run", "dev"]
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
