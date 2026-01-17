@@ -3,9 +3,6 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/eslint',
     '@nuxt/ui',
-    '@nuxt/content',
-    '@nuxt/image',
-    '@nuxt/test-utils',
     '@vueuse/nuxt'
   ],
 
