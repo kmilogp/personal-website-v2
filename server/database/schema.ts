@@ -1,5 +1,5 @@
 import { sql } from 'drizzle-orm'
-import { pgTable, text, integer, timestamp, serial, boolean } from 'drizzle-orm/pg-core'
+import { pgTable, text, timestamp, serial, boolean } from 'drizzle-orm/pg-core'
 
 export const contacts = pgTable('contacts', {
   id: serial('id').primaryKey(),
