@@ -6,8 +6,6 @@ COPY . .
 
 RUN bun install
 
-ENV NITRO_PRSET=bun
-
 RUN bun run build
 
 FROM oven/bun:1
