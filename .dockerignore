@@ -1,0 +1,17 @@
+node_modules
+dist
+.output
+.nuxt
+.DS_Store
+.vscode
+.env.local
+docker-compose.yaml
+.editorconfig
+.git
+.github
+.gitignore
+Dockerfile
+.dockerignore
+.npmrc
+Dockerfile.migrations
+renovate.json
