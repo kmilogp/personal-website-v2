@@ -13,5 +13,5 @@ docker-compose.yaml
 Dockerfile
 .dockerignore
 .npmrc
-Dockerfile.migration
+Dockerfile.migrations
 renovate.json
