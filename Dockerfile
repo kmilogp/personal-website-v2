@@ -17,7 +17,6 @@ USER 1000:1000
 WORKDIR /app
 
 COPY --from=builder /app/.output /app/.output
-COPY --from=builder /app/drizzle.config.ts /app/drizzle.config.ts
 
 EXPOSE 3000
 
