@@ -15,22 +15,22 @@
     "db:studio": "DATABASE_HOST=localhost bun run --env-file=.env.dev drizzle-kit studio"
   },
   "dependencies": {
-    "@iconify-json/lucide": "^1.2.84",
-    "@iconify-json/simple-icons": "^1.2.66",
-    "@nuxt/content": "3.8.0",
+    "@iconify-json/lucide": "^1.2.129",
+    "@iconify-json/simple-icons": "^1.2.94",
+    "@nuxt/content": "3.16.0",
     "@nuxt/image": "1.11.0",
-    "@nuxt/test-utils": "4.0.0",
-    "@nuxt/ui": "^4.3.0",
-    "@vueuse/nuxt": "14.0.0",
-    "drizzle-orm": "^0.45.1",
+    "@nuxt/test-utils": "4.2.0",
+    "@nuxt/ui": "^4.11.0",
+    "@vueuse/nuxt": "14.4.0",
+    "drizzle-orm": "^0.45.2",
     "nuxt": "^4.2.2",
-    "vue": "^3.5.26"
+    "vue": "^3.5.42"
   },
   "devDependencies": {
-    "@nuxt/eslint": "^1.12.1",
-    "drizzle-kit": "^0.31.8",
-    "eslint": "^9.39.2",
+    "@nuxt/eslint": "^1.17.0",
+    "drizzle-kit": "^0.31.10",
+    "eslint": "^9.39.5",
     "typescript": "^5.9.3",
-    "vue-tsc": "^3.2.2"
+    "vue-tsc": "^3.3.11"
   }
 }
