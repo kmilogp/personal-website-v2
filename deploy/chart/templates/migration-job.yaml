@@ -1,0 +1,38 @@
+{{- if and .Values.personalWebsite.enabled .Values.personalWebsite.migration.enabled }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: personal-website-migration-{{ .Release.Revision }}
+  labels:
+    app: personal-website-migration
+    app.kubernetes.io/instance: {{ .Release.Name }}
+  annotations:
+    # ArgoCD PreSync hook - runs before application sync
+    argocd.argoproj.io/hook: PreSync
+    # Delete the job after it succeeds (keeps cluster clean)
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation,HookSucceeded
+spec:
+  # Don't keep completed jobs around
+  ttlSecondsAfterFinished: {{ .Values.personalWebsite.migration.ttlSecondsAfterFinished | default 300 }}
+  backoffLimit: {{ .Values.personalWebsite.migration.backoffLimit | default 1 }}
+  template:
+    metadata:
+      labels:
+        app: personal-website-migration
+    spec:
+      {{- with .Values.personalWebsite.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      restartPolicy: Never
+      containers:
+        - name: migration
+          image: "{{ .Values.personalWebsite.migration.image.repository }}:{{ .Values.personalWebsite.migration.image.tag }}"
+          imagePullPolicy: {{ .Values.personalWebsite.migration.image.pullPolicy }}
+          resources:
+            {{- toYaml (.Values.personalWebsite.migration.resources | default .Values.personalWebsite.resources) | nindent 12 }}
+          env:
+            {{- with .Values.personalWebsite.env }}
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
+{{- end }}

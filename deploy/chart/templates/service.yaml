@@ -1,0 +1,17 @@
+{{- if .Values.personalWebsite.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: personal-website-kmilo-dev
+  labels:
+    app: personal-website-kmilo-dev
+    app.kubernetes.io/instance: {{ .Release.Name }}
+spec:
+  type: {{ .Values.personalWebsite.service.type }}
+  ports:
+    - port: {{ .Values.personalWebsite.service.port }}
+      targetPort: {{ .Values.personalWebsite.service.port }}
+  selector:
+    app: personal-website-kmilo-dev
+{{- end }}
+

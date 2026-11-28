@@ -1,0 +1,56 @@
+personalWebsite:
+  enabled: true
+  image:
+    repository: registry.kmilo.dev/personal-website
+    tag: latest
+    pullPolicy: Always
+  replicas: 2
+  resources:
+    limits:
+      cpu: 100m
+      memory: 128Mi
+    requests:
+      cpu: 0m
+      memory: 0Mi
+  service:
+    type: ClusterIP
+    port: 3000
+  imagePullSecrets:
+    - name: registry-kmilo-dev-secret
+  ingress:
+    enabled: true
+    hosts:
+      - kmilo.dev
+      - home.kmilo.dev
+    ingressClassName: nginx
+  env:
+    - name: DATABASE_USER
+      value: personal_website
+    - name: DATABASE_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: postgresql-secret
+          key: personal-website-db-password
+    - name: DATABASE_NAME
+      value: personal_website
+    - name: DATABASE_HOST
+      value: postgresql
+    - name: DATABASE_PORT
+      value: "5432"
+  # Migration job configuration (runs before each deployment via ArgoCD PreSync hook)
+  migration:
+    enabled: true
+    image:
+      repository: registry.kmilo.dev/personal-website-migrations
+      tag: latest
+      pullPolicy: Always
+    backoffLimit: 1
+    ttlSecondsAfterFinished: 300
+    resources:
+      limits:
+        cpu: 100m
+        memory: 256Mi
+      requests:
+        cpu: 0m
+        memory: 0Mi
+

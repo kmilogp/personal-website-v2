@@ -1,0 +1,25 @@
+{{- if and .Values.personalWebsite.enabled .Values.personalWebsite.ingress.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: personal-website-kmilo-dev
+  labels:
+    app: personal-website-kmilo-dev
+    app.kubernetes.io/instance: {{ .Release.Name }}
+spec:
+  ingressClassName: {{ .Values.personalWebsite.ingress.ingressClassName }}
+  rules:
+    {{- range .Values.personalWebsite.ingress.hosts }}
+    - host: {{ . }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: personal-website-kmilo-dev
+                port:
+                  number: {{ $.Values.personalWebsite.service.port }}
+    {{- end }}
+{{- end }}
+

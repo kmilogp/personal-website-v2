@@ -1,0 +1,4 @@
+personalWebsite:
+  enabled: false
+  ingress: {}
+  migration: {}

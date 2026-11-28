@@ -1,0 +1,36 @@
+{{- if .Values.personalWebsite.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: personal-website-kmilo-dev
+  labels:
+    app: personal-website-kmilo-dev
+    app.kubernetes.io/instance: {{ .Release.Name }}
+spec:
+  replicas: {{ .Values.personalWebsite.replicas }}
+  selector:
+    matchLabels:
+      app: personal-website-kmilo-dev
+  template:
+    metadata:
+      labels:
+        app: personal-website-kmilo-dev
+    spec:
+      {{- with .Values.personalWebsite.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: personal-website-kmilo-dev
+          image: "{{ .Values.personalWebsite.image.repository }}:{{ .Values.personalWebsite.image.tag }}"
+          imagePullPolicy: {{ .Values.personalWebsite.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.personalWebsite.service.port }}
+          resources:
+            {{- toYaml .Values.personalWebsite.resources | nindent 12 }}
+          env:
+            {{- with .Values.personalWebsite.env }}
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
+{{- end }}
+
